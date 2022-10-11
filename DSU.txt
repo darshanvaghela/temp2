@@ -1,0 +1,26 @@
+ll N=2e5+1;
+vll sz(N),p(N);
+ 
+ll get(ll a)
+{
+    if(p[a]==a)
+        return a;
+    p[a]=get(p[a]);
+    return p[a];
+}
+ 
+void merge(ll a,ll b)
+{
+    a=get(a);
+    b=get(b);
+    if(sz[a]>=sz[b])
+        p[b]=a,sz[a]+=sz[b];
+    if(sz[a]<sz[b])
+        p[a]=b,sz[b]+=sz[a];
+}
+
+void init(ll n)
+{
+    for(ll i=0;i<=n;i++)
+        p[i] = i , sz[i] = 1;
+}
